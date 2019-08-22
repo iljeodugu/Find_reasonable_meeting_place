@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>합리적인 미팅 장소에 대한 고찰</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">소개</a></li>
+							<li><a href="#one">기존 연구</a></li>
+							<li><a href="#two">새로운 접근 방법</a></li>
+							<li><a href="#three">결과</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>합리적인 미팅 장소에 대한 고찰</h1>
+							<p>예로부터 여러명의 만남의 장소를 정하는 것은 매우 고되고 힘든 일이였다. 한명의 이득이 다른이에게는 손해가 되는 끝없는 치킨 게임을 하게된다. 이에 본 연구에서는 N명의 사람이 합리적으로 만날수 있는 위치를 정하는 방법을 제안한다.</p>
+							<a href="#result">결과 바로 가기</a>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2 fullscreen fade-up">
+						<div class="inner">
+							<h1>기존 연구</h1>
+							<h2>위도와 경도의 직선거리를 이용한 방법</h2>
+							<p>2명 또는 3명의 점이 있을 때 같은 거리를 가지는 위치를 구하는 방법은 매우 간단하다. 하지만 n > 3일경우에 같은 거리를 가지는 점은 존재하지 않을 가능성이 높다는 것은 매우 자명한 사실이다. 즉, 같은 거리를 가지는 위치는 존재하지 않을 수 있기 때문에 최적의 위치를 찾는 것을 목표로 한다. </p>
+							<h2>기존의 탐색 방법</h2>
+							<p>기존 연구에서는 N명 이상의 만남의 최적값을 찾기위한 새로운 방법을 제안했다. 실험에서는 영종도, 안산, 인천, 방학, 서초구, 화성에 위치하는 사람들의 위치를 사용하여 최적화된 미팅장소를 결정하였다. 각각의 위치를 구글지도(Google maps)를 이용하여 위도와 경도를 얻어 냈으며, 한반도를 기준으로 위도는 36~39, 경도는 125~128 의 위치를 30M 기준으로 바둑판식으로 총 1억개의 위치를 완전탐색을 하였다. 최적화된 위치는 각각의 위치 분산이 최소화 되는 지점, 즉 모두가 최대한 비슷한 거리를 이동할 수 있도록 하였다. 완전탐색 결과 37.302, 126.6875 지점이 분산이 최소화 되는 지점이였으며, 각각의 거리는 0.15184, 0.08424, 0.06485, 0.13498, 0.11155, 0.14934 로 균등하지 않지만 최대한 공평한 값이 나오게 되었다. </p>
+							<h2>기존 연구 결론</h2>
+							<p>6명의 최적화된 위치를 찾는 것은 매우 어렵고 힘든 일이다. 각각의 거리의 분산의 최솟값을 찾는것으로 해결이 되었지만 향후 연구에서는 5 번의 만남의 이동거리의 최솟값을 계산하는 방식으로 각각의 인원의 이동거리 최대한 같게 만드는 방식으로 진행될 것이다</p>
+							<br>
+							<div style="text-align: center">
+								<img src="images/prvious_study_image.PNG">
+								<h4>최적화된 위치</h4>
+							</div>
+						</div>
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fullscreen fade-up">
+						<div class="inner">
+							<h1>새로운 접근 방법</h1>
+							<h2>기존 연구의 한계</h2>
+							<p>기존연구의 방법은 위도 및 경도만을 이용해서 직선거리를 이용해 계산을 하였기 때문에 실제 거리와 이동하는 시간이 일치되지 않는 문제가 있었다. 또한 실제 위치한 위도와 경도가 바다 이거나 혹은 숲속 등 실제로 이동할 수 없는 곳을 최적의 위치로 계산하는 문제가 있었다. 이를 해결하기 위해서 실제 찾아갈 있는 위치를 찾아서 계산하며 합리적인 위치를 제시한다.</p>
+							<h2>자료 수집</h2>
+							<p>실제로 가는 시간을 구하기 위해서 파이썬의 Selenium을 이용해 구글 지도의 길찾기 정보를 수집하였다. 위도와 경도만을 이용해 거리를 계산하는 기존의 방식에 비해서 구글 지도를 호출하고 파싱하는 시간이 있어서 범위를 서울, 경기권, 충청도로 제한하였다. 자동화를 진행하면서 구글지도의 응답속도가 지연되는 문제를 해결하기 위해서 파이썬위에서 파이썬을 호출하는 방식으로 구현하였으며, 데이터를 일정량 수집한후에는 브라우저를 재부팅을 하면서 속도를 향상하였다. 평균 데이터를 10개를 수집하는데 10초~20초 정도 걸렸으며, 대중교통을 이용해서 찾아가는 방법이 없는 경우를 제외하여 190시간에 걸쳐서 84,295개의 데이터를 수집하였다.</p>
+							<br>
+							<div style="text-align: center">
+								<img src="images/how_to_find.gif">
+								<br>
+								<h4>데이터 수집 예시</h4>
+							</div>
+							<h2>데이터 계산 </h2>
+							<p>실험은 기존의 방식과 같은 방식으로 진행된다. 기존의 방식에서는 직선거리를 이용해서 평균 및 분산을 계산하였다면 본 연구에서는 대중교통을 이용한 실제 거리를 이용해서 평균 및 분산을 계산하였다. 평균 최소 지점은 각각의 이동시간의 평균으로 평등하지 않지만 이동시간을 최소화 할 수 있는 지점을 뜻하고, 분산 최소 지점은 내가 조금 더 많이 이동하더라도 모두가 균등한 시간을 이동할 수 있는 위치를 뜻한다. 이를 이용해 실험을 진행하였다.</p>
+						</div>
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>결과</h1>
+							<h2>탐색 지역</h2>
+							<p>기존의 방식에서는 위도, 경도 만으로 탐색지역을 말하였기때문에, 이해가 어려운 점이 있어서 이를 해결하기 위해서 탐색한 지역을 가시화 하였다.</p>
+							<div style="text-align: center;">
+								<img src='images/find_meeting_map.PNG' style="width: 100%">
+								<h4>탐색한 지역 가시화(검은점 - 탐색한 지역, 파란 아이콘 - 출발위치) - 아이콘 클릭시 정보 출력</h4>
+								<a href='result/finding_maker.html'>탐색 지역 가시화 바로가기</a>
+							</div>
+
+							<h2>평균 최소 지역</h2>
+							<p>평균 최소값들을 300개를 뽑아서 가시화 하였다. 이 지점들은 이동 시간을 최소화 할 수 있는 지점들이다.</p>
+							<div style="text-align: center;">
+								<img src='images/mean_meeting_map.PNG' style="width: 100%">
+								<h4>이동시간 최소화 지점 가시화(빨간색 아이콘 - 이동시간 최소화 지점, 파란 아이콘 - 출발위치) - 아이콘 클릭시 정보 출력</h4>
+								<a href='result/mean_rank.html'>이동시간 최소화 지점 바로가기</a>
+							</div>
+
+							<h2>분산 최소 지역</h2>
+							<p>분산 최소값들을 300개를 뽑아서 가시화 하였다. 이 지점들은 모두가 균등하기 이동할 수 있는 지점들이다.</p>
+							<div style="text-align: center;">
+								<img src='images/dis_meeting_result.PNG' style="width: 100%">
+								<h4>이동시간 최소화 지점 가시화(빨간색 아이콘 - 분산 최소화 지점, 파란 아이콘 - 출발위치) - 아이콘 클릭시 정보 출력</h4>
+								<a href='result/dis_rank.html'>분산 최소화 지점 바로가기</a>
+							</div>
+
+							<h2>평균 및 분산 결과</h2>
+							<p>위의 분산 및 평균의 최소 지역의 가장 최적화된 위치를 가시화 하였다.</p>
+							<div style="text-align: center;">
+								<img src='images/result.PNG' style="width: 100%">
+								<h4>결과 맵(폴리곤 라인 - 이동시간, 파란 아이콘 - 출발위치) - 아이콘 클릭시 정보 출력</h4>
+								<a href='result/result_map.html'>이동시간 최소화 지점 바로가기</a>
+							</div>
+
+							<h2 id="result">최종 결과 및 합리적인 위치</h2>
+							<p>평균값만 계산을 하거나 또는 분산만을 계산을 하였을때는 비합리적인 결과가 나오는 문제가 있어서 이를 해결하기 위해서 표준편차가 15분 이하, 즉 이동시간이 평균 15분정도 차이나는 위치중 이동거리가 낮은 지점을 이상적인 위치로 가시화 하였다. 정확한 위치를 선택하기보다는 구름아이콘이 있는 지역을 중점으로 미팅장소를 정하는 것을 권고한다.</p>
+							<div style="text-align: center;">
+								<img src='images/result-reasonable.PNG' style="width: 100%">
+								<h4>결과 맵(폴리곤 라인 - 이동시간, 파란 아이콘 - 출발위치, 구름 아이콘 - 이상적인 위치) - 아이콘 클릭시 정보 출력</h4>
+								<a href='result/result_map-reasonable.html'>합리적인 위치 바로가기</a>
+							</div>
+
+							<h2>결론</h2>
+							<p>실제 길찾기 데이터를 수집하여서 여러명이 만날수 있는 이상적인 위치를 구하였다. 치킨게임이 커질수록 이동시간은 4시간 까지 증가하는 양상을 보였고, 누군가가 희생을 한다면 평균 이동시간을 1시간 내외로 할 수 있다. 하지만 이는 분산이 매우 큰 위치로 최종 합리적인 위치로 결정을 하는것이 이상적이라고 생각한다.</p>
+
+							<h2>후기</h2>
+							<p>개발자가 취미로 개발을 하면 개발이 끝나고 개발을 하다가 개발을 하면서 쉬다가 개발을 하는 개발같은 일이 일어난다.</p>
+
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Lee Hyeon Chang. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
